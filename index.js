@@ -196,7 +196,6 @@ const generateFile = (obj, description) => {
       const varsToTypesStr = getVarsToTypesStr(queryResult.argumentsDict);
       let query = queryResult.queryStr;
       query = `${description.toLowerCase()} ${type}${varsToTypesStr ? `(${varsToTypesStr})` : ''}{\n${query}\n}`;
-      console.log(query, '.......');
       fs.writeFileSync(path.join(writeFolder, `./${type}.gql`), query);
       indexJs += `module.exports.${type} = fs.readFileSync(path.join(__dirname, '${type}.gql'), 'utf8');\n`;
     }
